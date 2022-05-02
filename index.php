@@ -82,18 +82,18 @@
         private $visitDate;
         private $registered;
         private $discount;
-        public function __construct($registered)
+        private $cardExpiration;
+        public function __construct($registered, $cardExpiration)
         {
             $this->registered = $registered;
-        }  
-        public function setDiscount($discount)
-        {
+            $this->cardExpiration = $cardExpiration;
             if($registered){
                 $this->discount = 20; 
             }
-        }
-        public function getDiscount() {
-            return $this->discount;
+            if ($cardExpiration <= date("d/m/Y"))
+            {
+                echo "La carta è scaduta";
+            }
         }
     }
     class registeredUser extends user
@@ -115,8 +115,9 @@
         private $tot;
     }
 
-    $purchase = new user (true);
+    $purchase = new user (true, 22/11/2011);
         var_dump($purchase);
+        // echo date ("d/m/Y");
 
 ?>
 
